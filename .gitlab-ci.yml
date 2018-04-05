@@ -1,0 +1,21 @@
+stages:
+  - build
+
+before_script:
+  - git submodule init
+  - git submodule update
+  - unset -f module 2>/dev/null
+  - unset MODULEPATH MODULESHOME _MODULESBEGINENV_ MODULE_VERSION MODULE_VERSION_STACK
+  - . /usr/local/Modules/default/init/bash
+  - . /usr/local/Modules/default/init/bash_completion
+  - module load nco
+  # For lack of access to anaconda from PAN
+  - . /home/Alistair.Adcroft/bin/anaconda3/bin/activate py3
+
+# Test
+build:
+  stage: build
+  tags:
+    - pan
+  script:
+    - make
