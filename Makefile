@@ -5,10 +5,10 @@ all: $(TARGS) hash.md5
 	md5sum -c hash.md5
 
 ocean_hgrid.nc ocean_mask.nc:
-	wget ftp://ftp.gfdl.noaa.gov/home/aja/OM4_05_grid.unpacked/$@
+	wget -nv ftp://ftp.gfdl.noaa.gov/home/aja/OM4_05_grid.unpacked/$@
 	md5sum -c $@.md5
 PHC2_salx.2004_08_03.nc:
-	wget http://data1.gfdl.noaa.gov/~nnz/mom4/COREv1/support_data/PHC2_salx.2004_08_03.nc
+	wget -nv http://data1.gfdl.noaa.gov/~nnz/mom4/COREv1/support_data/PHC2_salx.2004_08_03.nc
 	md5sum -c $@.md5
 PHC2_salx.2004_08_03.corrected.nc: PHC2_salx.2004_08_03.nc
 	ncap2 -h -O -s 'time(:)={15,45,76,106,136,168,198,228,258,288,320,350}' $< $@
