@@ -22,4 +22,5 @@ build:
   script:
     - conda create -q -y -n py3 python=3 numpy scipy netcdf4
     - . activate py3
+    - conda info -e
     - make
