@@ -9,8 +9,10 @@ before_script:
   - . /usr/local/Modules/default/init/bash
   - . /usr/local/Modules/default/init/bash_completion
   - module load nco
-  # For lack of access to anaconda from PAN
-  - . /home/Alistair.Adcroft/bin/anaconda3/bin/activate py3
+  # Create python environment
+  - test -f Miniconda3-latest-Linux-x86_64.sh || wget -nv http://anaconda.rdhpcs.noaa.gov/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  - bash Miniconda3-latest-Linux-x86_64.sh -b -p `pwd`/local_env
+  - export PATH=`pwd`/local_env/bin:$PATH
 
 # Test
 build:
@@ -18,4 +20,7 @@ build:
   tags:
     - pan
   script:
+    - conda create -q -y -n py3 python=3 numpy scipy netcdf4
+    - . activate py3
+    - conda info -e
     - make
