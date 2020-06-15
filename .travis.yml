@@ -1,15 +1,14 @@
 language: python
-dist: trusty
-sudo: false
 
 addons:
   apt:
     packages:
     - nco
 
-
 python:
   - "3.6"
+  - "3.7"
+  - "3.8"
 
 install:
   - pip install --upgrade pip
