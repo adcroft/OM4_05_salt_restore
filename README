@@ -1,0 +1,4 @@
+Repro notes:
+------------
+
+Files reproduce using nco/4.5.4 and the included conda env.
